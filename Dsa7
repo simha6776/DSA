@@ -23,3 +23,52 @@ int main() {
  }
 
  // Sort edges by weight
+sortEdges(edges, E);
+
+ int parent[V];
+
+ for (int i = 0; i < V; i++)
+
+ parent[i] = i;
+
+ int minCost = 0;
+
+ printf("Edges in Minimum Cost Spanning Tree:\n");
+
+ for (int i = 0, count = 0; count < V - 1 && i < E; i++) {
+
+ int u = edges[i].u;
+
+ int v = edges[i].v;
+
+ int w = edges[i].weight;
+
+ int setU = findParent(parent, u);
+
+ int setV = findParent(parent, v);
+
+ // If including this edge doesn't cause a cycle
+
+ if (setU != setV) {
+
+ printf("%d - %d : %d\n", u, v, w);
+
+ minCost += w;
+
+ unionSet(parent, setU, setV);
+
+ count++;
+
+ }
+
+ }
+
+ printf("Minimum Cost of Spanning Tree = %d\n", minCost);
+
+ return 0;
+
+}
+
+8. From a given vertex in a weighted connected graph, find shortest paths to other 
+
+vertices Using Dijkstra's alg
